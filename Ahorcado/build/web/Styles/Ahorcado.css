@@ -1,2 +1,225 @@
+/* Fondo */
+body {
+    background-image: url(../Image/fondoahorcaado.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: "Cinzel", serif;
+    color: #111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
+/* Contenedor */
+.container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 60px auto;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
 
+/* Encabezado */
+.top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.titulo {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(22px, 5vw, 44px);
+    letter-spacing: 2px;
+    margin: 0;
+    color: black;
+    text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
+}
+
+.cronometro {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(16px, 4vw, 32px);
+    margin-left: 10px;
+    color: red;
+    border: 4px solid #111;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: black;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+/* Área del juego */
+.area-juego {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1 1 60%;
+    min-width: 280px;
+}
+
+.right {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Palabra */
+.caja-letras {
+    border: 4px solid #111;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.7);
+    border-radius: 15px;
+}
+
+.espacios {
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 0.5rem;
+    text-align: center;
+}
+
+/* Alfabeto */
+.alfabeto {
+    text-align: center;
+    margin: 1rem 0 2rem;
+}
+
+.alfa-fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.letra {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(12px, 2.5vw, 14px);
+    width: clamp(32px, 8vw, 40px);
+    height: clamp(32px, 8vw, 40px);
+    border: 3px solid #111;
+    background: linear-gradient(180deg, #fff, #ddd);
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    transition: transform 0.1s;
+}
+
+.letra:hover {
+    background: linear-gradient(180deg, #eee, #ccc);
+    background-color: #9602F7;
+    color: #9602F7;
+}
+
+.letra:disabled {
+    background: #aaa;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Pista */
+.pista-box {
+    border: 3px solid #111;
+    padding: 1rem;
+    min-height: 56px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.8);
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+/* Dibujo */
+.dibujo {
+    width: 100%;
+    height: clamp(200px, 35vw, 300px);
+    border: 4px solid #111;
+    background: rgba(255,255,255,0.6);
+    border-radius: 15px;
+}
+
+/* Controles */
+.controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
+}
+
+.controls button {
+    font-family: "Press Start 2P", monospace;
+    font-size: 12px;
+    padding: 0.6rem;
+    border: 3px solid #111;
+    background: linear-gradient(180deg, #fff, #eee);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    border-radius: 6px;
+    width: 100%;
+    max-width: 140px;
+    transition: 0.2s;
+}
+
+.btn-inicio:hover {
+    background: green;
+    color: white;
+    border-color: white;
+}
+.btn-salir:hover {
+    background: red;
+    color: white;
+    border-color: white;
+}
+.btn-pausa:hover {
+    background: #D4E053;
+    color: white;
+    border-color: white;
+}
+.btn-reiniciar:hover {
+    background: blue;
+    color: white;
+    border-color: white;
+}
+
+/* Extra responsive */
+@media (max-width: 600px) {
+    .top {
+        flex-direction: column;
+        text-align: center;
+    }
+    .titulo {
+        font-size: clamp(20px, 6vw, 28px);
+    }
+    .cronometro {
+        margin: 0;
+    }
+    .alfa-fila {
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .letra {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
+    }
+    .espacios {
+        font-size: 16px;
+        letter-spacing: 0.3rem;
+    }
+}
