@@ -83,7 +83,7 @@
                     <div class="dibujo" aria-hidden="true">
                         <div id="imagen-ganador" class="imagen-ganador" style="margin-top:10px; display:none;">
                             <img src="" alt="Imagen del objeto" style="max-width:150px; max-height:150px;">
-                        </div>
+                        </div>  
                     </div>
 
                     <div class="controls">

@@ -26,40 +26,45 @@ function actualizarCronometro() {
 
 // Iniciar juego
 function iniciarJuego() {
-    if (juegoIniciado)
-        return;
-    juegoIniciado = true;
+    if (!juegoIniciado) {
+        juegoIniciado = true;
 
-    // Seleccionar palabra random con pista
-    const seleccion = palabras[Math.floor(Math.random() * palabras.length)];
-    palabraSecreta = seleccion.palabra;
-    pistaActual = seleccion.pista;
+        // Si aún no hay palabra seleccionada, elegir una
+        if (!palabraSecreta) {
+            const seleccion = palabras[Math.floor(Math.random() * palabras.length)];
+            palabraSecreta = seleccion.palabra;
+            pistaActual = seleccion.pista;
+            palabraSecretaImagen = seleccion.imagen;
 
-    document.querySelector(".pista-box").textContent = pistaActual;
+            document.querySelector(".pista-box").textContent = pistaActual;
 
-    // Inicializar progreso
-    progreso = Array(palabraSecreta.length).fill("_");
-    errores = 0;
-    mostrarProgreso();
+            progreso = Array(palabraSecreta.length).fill("_");
+            mostrarProgreso();
 
-    // Reiniciar estado de letras
-    document.querySelectorAll(".letra").forEach(btn => {
-        btn.disabled = false;
-        btn.style.backgroundColor = "";
-    });
+            document.querySelectorAll(".letra").forEach(btn => {
+                btn.disabled = false;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+            });
 
-    // Iniciar cronómetro
-    intervalo = setInterval(() => {
-        if (tiempoRestante > 0) {
-            tiempoRestante--;
-            actualizarCronometro();
-        } else {
-            clearInterval(intervalo);
-            alert("¡Se acabo el tiempo!, la palabra oculta es: " + palabraSecreta);
-            reiniciarJuego();
+            document.querySelectorAll(".corazon").forEach(c => c.style.visibility = "visible");
+            document.getElementById("imagen-ganador").style.display = "none";
         }
-    }, 1000);
+
+        // Reiniciar el cronómetro si estaba pausado
+        intervalo = setInterval(() => {
+            if (tiempoRestante > 0) {
+                tiempoRestante--;
+                actualizarCronometro();
+            } else {
+                clearInterval(intervalo);
+                alert("¡Se acabó el tiempo!, la palabra oculta es: " + palabraSecreta);
+                reiniciarJuego();
+            }
+        }, 1000);
+    }
 }
+
 
 // Reiniciar juego
 function reiniciarJuego() {
