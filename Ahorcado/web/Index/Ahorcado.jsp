@@ -18,13 +18,22 @@
         <div class="container">
             <header class="top">
                 <h1 class="titulo">AHORCADO</h1>
-                <div class="cronometro">05:00</div>
+                <div class="status">
+                    <div class="cronometro">05:00</div>
+                    <div class="vidas">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                        <img src="${pageContext.request.contextPath}/Image/corazon.PNG" class="corazon" alt="vida">
+                    </div>
+                </div>
             </header>
 
             <section class="area-juego">
                 <div class="left">
                     <div class="caja-letras">
-                        <!-- Guiones de palabra -->
                         <div class="espacios">__ __ __ __ __ __ __ __ __</div>
                     </div>
 
@@ -71,7 +80,11 @@
                 </div>
 
                 <aside class="right">
-                    <div class="dibujo" aria-hidden="true"><!-- espacio para dibujo del ahorcado --></div>
+                    <div class="dibujo" aria-hidden="true">
+                        <div id="imagen-ganador" class="imagen-ganador" style="margin-top:10px; display:none;">
+                            <img src="" alt="Imagen del objeto" style="max-width:150px; max-height:150px;">
+                        </div>
+                    </div>
 
                     <div class="controls">
                         <button class="btn-inicio" onclick="iniciarJuego()">INICIO</button>

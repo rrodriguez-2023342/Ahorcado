@@ -45,6 +45,24 @@ body {
     text-shadow: 2px 2px 0 #fff, 4px 4px 0 #000;
 }
 
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.vidas {
+    display: flex;
+    gap: 8px;
+}
+
+.corazon {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(2px 2px 2px #000);
+}
+
 .cronometro {
     font-family: "Press Start 2P", monospace;
     font-size: clamp(16px, 4vw, 32px);

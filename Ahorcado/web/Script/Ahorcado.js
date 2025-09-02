@@ -81,6 +81,10 @@ function reiniciarJuego() {
         btn.style.color = "";
     });
 
+    document.querySelectorAll(".corazon").forEach(c => {
+        c.style.visibility = "visible";
+    });
+
     actualizarCronometro();
 }
 
@@ -122,6 +126,12 @@ function verificarLetra(letra, boton) {
         boton.style.color = "white";
         errores++;
 
+        // Ocultar un corazón
+        const corazones = document.querySelectorAll(".corazon");
+        if (errores <= erroresMax) {
+            corazones[errores - 1].style.visibility = "hidden"; // oculta el corazón correspondiente
+        }
+
         if (errores >= erroresMax) {
             clearInterval(intervalo);
             document.querySelector(".espacios").textContent = palabraSecreta.split("").join(" ");
@@ -135,6 +145,7 @@ function verificarLetra(letra, boton) {
         alert("¡Ganaste! La palabra oculta es: " + palabraSecreta);
     }
 }
+
 
 // Eventos
 document.addEventListener("DOMContentLoaded", () => {
