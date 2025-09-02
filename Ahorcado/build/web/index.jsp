@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="Image/logo.png"/>
-        <link rel="stylesheet" href="Styles/index.css"/>
+        <link rel="icon" href="${pageContext.request.contextPath}/Image/logo.png"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/index.css"/>
         <title>Inicio</title>
     </head>
     <body>
         <div class="contenedor">
             <h1>AHORCADO</h1>
             <button class="boton">
-                <a href="Index/Ahorcado.jsp">Jugar</a>
+                <a href="Controlador?menu=Ahorcado">Jugar</a>
             </button> 
         </div>
     </body>

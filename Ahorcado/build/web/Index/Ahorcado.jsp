@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="../Image/logo.png"/>
+        <link rel="icon" href="${pageContext.request.contextPath}/Image/logo.png"/>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../Styles/Ahorcado.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Styles/Ahorcado.css"/>
         <title>Ahorcado</title>
     </head>
     <body>
@@ -77,7 +77,7 @@
                         <button class="btn-inicio">INICIO</button>
                         <button class="btn-reiniciar">REINICIAR</button>
                         <button class="btn-pausa">PAUSA</button>
-                        <button class="btn-salir">SALIR</button>
+                        <button class="btn-salir"><a href="Controlador?menu=Index">SALIR</a></button>
                     </div>
                 </aside>
             </section>
