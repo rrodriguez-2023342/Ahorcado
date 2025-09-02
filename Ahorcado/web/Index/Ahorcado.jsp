@@ -74,13 +74,14 @@
                     <div class="dibujo" aria-hidden="true"><!-- espacio para dibujo del ahorcado --></div>
 
                     <div class="controls">
-                        <button class="btn-inicio">INICIO</button>
-                        <button class="btn-reiniciar">REINICIAR</button>
-                        <button class="btn-pausa">PAUSA</button>
+                        <button class="btn-inicio" onclick="iniciarJuego()">INICIO</button>
+                        <button class="btn-reiniciar" onclick="reiniciarJuego()">REINICIAR</button>
+                        <button class="btn-pausa" onclick="pausarJuego()">PAUSA</button>
                         <button class="btn-salir"><a href="Controlador?menu=Index">SALIR</a></button>
                     </div>
                 </aside>
             </section>
         </div>
+        <script src="${pageContext.request.contextPath}/Script/Ahorcado.js"></script>
     </body>
 </html>
