@@ -9,9 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="Image/logo.png"/>
+        <link rel="stylesheet" href="Styles/index.css"/>
         <title>Inicio</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="contenedor">
+            <h1>AHORCADO</h1>
+            <button class="boton">
+                <a href="Index/Ahorcado.jsp">Jugar</a>
+            </button> 
+        </div>
     </body>
 </html>

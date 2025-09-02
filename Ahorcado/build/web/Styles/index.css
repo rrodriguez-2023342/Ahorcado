@@ -1,0 +1,43 @@
+body {
+    background-image: url(../Image/fondoindex.png);
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.contenedor {
+    text-align: center;
+    color: white;
+}
+
+.contenedor h1 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px #ff004c;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.boton {
+    display: inline-block;
+    background-color: #ff004c;
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.2s;
+    border-radius: 15px;
+}
+
+.boton:hover {
+    background-color: #ff3366;
+    transform: scale(1.05);
+}
+
