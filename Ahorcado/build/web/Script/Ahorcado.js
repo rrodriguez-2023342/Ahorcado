@@ -9,7 +9,7 @@ const palabras = [
     {palabra: "ESTUDIAR", pista: "Ejercitar el entendimiento para alcanzar o comprender algo.", imagen: "Image/estudiar.png"},
     {palabra: "AHORCADO", pista: "Nombre del juego que estás jugando ahora.", imagen: "Image/ahorcado.png"},
     {palabra: "COMPUTADORA", pista: "Máquina que procesa información.", imagen: "Image/computadora.png"},
-    {palabra: "PROFESORES", pista: "Persona que ejerce o enseña una ciencia o arte.", imagen: "Image/profesores.png"}
+        {palabra: "PROFESORES", pista: "Persona que ejerce o enseña una ciencia o arte.", imagen: "Image/profesores.png"}
 ];
 
 // Variables para el estado del juego
