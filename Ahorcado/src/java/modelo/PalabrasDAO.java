@@ -22,7 +22,7 @@ public class PalabrasDAO {
 
             while (rs.next()) {
                 Palabras palabra = new Palabras(
-                        rs.getInt("codigoPalabra"),
+                        rs.getInt("codigo_palabra"),
                         rs.getString("palabra"),
                         rs.getString("pista")
                 );
