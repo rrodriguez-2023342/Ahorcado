@@ -90,7 +90,7 @@ public class MostrarPalabras extends HttpServlet {
                 json.append("{"); // Abrir objeto JSON para esta palabra
 
                 // Agregar las propiedades de la palabra en formato JSON
-                json.append("\"codigoPalabra\":").append(palabra.getCodigoPalabra()).append(",");
+                json.append("\"codigo_palabra\":").append(palabra.getCodigoPalabra()).append(",");
                 json.append("\"palabra\":\"").append(palabra.getPalabra()).append("\",");
                 json.append("\"pista\":\"").append(palabra.getPista()).append("\"");
 

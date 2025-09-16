@@ -39,9 +39,9 @@ public class UsuariosDAO {
             // Recorrer los resultados (aunque normalmente será solo un usuario)
             while (rs.next()) {
                 // Guardar la información del usuario en el objeto "usuarios"
-                usuarios.setCodigoUsuario(rs.getInt("codigoUsuario"));
+                usuarios.setCodigoUsuario(rs.getInt("codigo_usuario"));
                 usuarios.setContraseña(rs.getString("contraseña"));
-                usuarios.setCorreoUsuario(rs.getString("correoUsuario"));
+                usuarios.setCorreoUsuario(rs.getString("correo_usuario"));
             }
         } catch (Exception e) {
             // Si ocurre un error (como que no encuentre usuario), se muestra un mensaje y la traza del error

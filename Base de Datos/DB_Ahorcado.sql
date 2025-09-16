@@ -3,27 +3,27 @@ Create Database DB_Ahorcado;
 Use DB_Ahorcado;
 
 create table Usuarios(
-	codigoUsuario int auto_increment,
-    correoUsuario varchar(100) not null,
+	codigo_usuario int auto_increment,
+    correo_usuario varchar(100) not null,
     contraseña varchar(100) not null,
-    primary key PK_codigoUsuario(codigoUsuario)
+    primary key PK_codigo_Usuario(codigo_Usuario)
 );
 
 create table Palabras(
-	codigoPalabra int auto_increment,
+	codigo_Palabra int auto_increment,
     palabra varchar(100) not null,
     pista varchar(200) not null,
-    primary key PK_codigoPalabra(codigoPalabra)
+    primary key PK_codigo_Palabra(codigo_Palabra)
 );
 
 -- CRUD USUARIOS
 Delimiter //
 	Create procedure sp_AgregarUsuario( 
-    in correoUsuario varchar(100), 
+    in correo_usuario varchar(100), 
     in contraseña varchar(100))
 		Begin
-			Insert into Usuarios(correoUsuario, contraseña)
-				Values(correoUsuario, contraseña);
+			Insert into Usuarios(correo_usuario, contraseña)
+				Values(correo_usuario, contraseña);
         End //
 Delimiter ;
 call sp_AgregarUsuario('robertoandre0307@gmail.com', 'hola');
@@ -32,18 +32,18 @@ call sp_AgregarUsuario('1', '1');
 Delimiter //
 	Create procedure sp_ListarUsuario()
 		Begin
-			select codigoUsuario, correoUsuario, contraseña from Usuarios;
+			select codigo_usuario, correo_usuario, contraseña from Usuarios;
         End //
 Delimiter ;
 call sp_ListarUsuario();
 
 Delimiter //
 	Create procedure sp_EliminarUsuarios(
-    in _codigoUsuario int)
+    in _codigo_usuario int)
 		Begin
 			set foreign_key_checks = 0;
 				Delete from Usuarios
-					where codigoUsuario = _codigoUsuario;
+					where codigo_usuario = _codigo_usuario;
 				Select row_count() as filasEliminadas;
 			set foreign_key_checks = 1;
         End//
@@ -52,35 +52,35 @@ Delimiter ;
 
 Delimiter //
 	Create procedure sp_BuscarUsuario(
-    in _codigoUsuario int)
+    in _codigo_usuario int)
 		Begin
-			Select codigoUsuario, correoUsuario, contraseña from Usuarios
-				where codigoUsuario = _codigoUsuario;
+			Select codigo_usuario, correo_usuario, contraseña from Usuarios
+				where codigo_usuario = _codigo_usuario;
         End //
 Delimiter ;
 call sp_BuscarUsuario(1);
 
 Delimiter //
 	Create procedure sp_BuscarUsuarioLog(
-    in _correoUsuario varchar(100), 
+    in _correo_usuario varchar(100), 
     in _contraseña varchar(100))
 		Begin
-			Select codigoUsuario, correoUsuario, contraseña from Usuarios
-				where correoUsuario = _correoUsuario and contraseña = _contraseña;
+			Select codigo_usuario, correo_usuario, contraseña from Usuarios
+				where correo_usuario = _correo_usuario and contraseña = _contraseña;
         End //
 Delimiter ;
 call sp_BuscarUsuarioLog('1', '1');
 
 Delimiter //
 	Create procedure sp_EditarUsuario(
-    in _codigoUsuario int, 
-    in _correoUsuario varchar(100),
+    in _codigo_usuario int, 
+    in _correo_usuario varchar(100),
     in _contraseña varchar(100))
 		Begin
 			Update Usuarios
-				set correoUsuario = _correoUsuario,
+				set correo_usuario = _correo_usuario,
                     contraseña = _contraseña
-					where codigoUsuario = _codigoUsuario;
+					where codigo_usuario = _codigo_usuario;
         End //
 Delimiter ;
 -- call sp_EditarUsuario(1, 'JulioHola', 'julio@gmail.com');
@@ -104,18 +104,18 @@ call sp_AgregarPalabra('PROFESORES', 'Persona que ejerce o enseña una ciencia o
 Delimiter //
 	Create procedure sp_ListarPalabra()
 		Begin
-			select codigoPalabra, palabra, pista from Palabras;
+			select codigo_palabra, palabra, pista from Palabras;
         End //
 Delimiter ;
 call sp_ListarPalabra();
 
 Delimiter //
 	Create procedure sp_EliminarPalabra(
-    in _codigoPalabra int)
+    in _codigo_palabra int)
 		Begin
 			set foreign_key_checks = 0;
 				Delete from Palabras
-					where codigoPalabra = _codigoPalabra;
+					where codigo_palabra = _codigo_palabra;
 				Select row_count() as filasEliminadas;
 			set foreign_key_checks = 1;
         End//
@@ -124,24 +124,24 @@ Delimiter ;
 
 Delimiter //
 	Create procedure sp_BuscarPalabra(
-    in _codigoPalabra int)
+    in _codigo_palabra int)
 		Begin
-			Select codigoPalabra, palabra, pista from Palabras
-				where codigoPalabra = _codigoPalabra;
+			Select codigo_palabra, palabra, pista from Palabras
+				where codigo_Palabra = _codigo_palabra;
         End //
 Delimiter ;
 call sp_BuscarPalabra(2);
 
 Delimiter //
 	Create procedure sp_EditarPalabra(
-    in _codigoPalabra int,
+    in _codigo_palabra int,
     in _palabra varchar(100), 
     in _pista varchar(100))
 		Begin
 			Update Palabras
 				set palabra = _palabra,
 					pista = _pista
-					where codigoPalabra = _codigoPalabra;
+					where codigo_palabra = _codigo_palabra;
         End //
 Delimiter ;
 -- call sp_EditarPalabra(2, 'HOLA', 'HOLA');
