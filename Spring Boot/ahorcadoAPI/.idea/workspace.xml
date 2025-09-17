@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fbf22d1-613d-400e-be3f-95b24378ba9a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ahorcadoAPI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/controller/InvalidEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/controller/PalabraController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/controller/UsuarioController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/controller/ValidacionEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/repository/PalabraRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/repository/UsuarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/service/PalabraService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/service/PalabraServiceImplements.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/service/UsuarioService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ahorcadoAPI/src/main/java/com/robertorodriguez/ahorcadoAPI/service/UsuarioServiceImplements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Base de Datos/DB_Ahorcado.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../Base de Datos/DB_Ahorcado.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +47,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.AhorcadoApiApplication.executor": "Run",
-    "git-widget-placeholder": "ftrrodriguez-2023342",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Ahorcado/Spring Boot/ahorcadoAPI",
@@ -102,7 +85,7 @@
       <updated>1758028456732</updated>
       <workItem from="1758028458245" duration="111000" />
       <workItem from="1758031997025" duration="2318000" />
-      <workItem from="1758034391865" duration="7570000" />
+      <workItem from="1758034391865" duration="8243000" />
     </task>
     <servers />
   </component>
