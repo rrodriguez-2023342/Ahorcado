@@ -21,9 +21,8 @@
                     <div class="login">
                         <div class="form">
                             <div class="text-center">
-                                <h6><span>Log in </span> <span>Sign up</span></h6>
+                                <h6><span>Log in </span></h6>
                                 <input type="checkbox" class="checkbox" id="reg-log">
-                                <label for="reg-log"></label>
 
                                 <div class="card-3d-wrap">
                                     <div class="card-3d-wrapper">
@@ -49,11 +48,12 @@
                                         </div>
 
                                         <!-- FORMULARIO DE REGISTRO -->
+                                        
                                         <div class="card-back">
                                             <div class="center-wrap">
                                                 <form action="Validar" method="post">
-                                                    <h4 class="heading">Registrarse</h4>
-
+                                                    <h4 class="heading">El Registrar no esta disponible</h4>
+                                                    <!--
                                                     <div class="form-group">
                                                         <input type="text" name="txtUsuarioR" id="usuario_registro" class="form-style" placeholder="Email" required>
                                                     </div>
@@ -75,10 +75,10 @@
 
                                                     <center>
                                                         <button type="submit" class="btnRegistrar" name="accion" value="Registrar">Registrarme</button>
-                                                    </center>
+                                                    </center> -->
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> 
 
                                     </div>
 
