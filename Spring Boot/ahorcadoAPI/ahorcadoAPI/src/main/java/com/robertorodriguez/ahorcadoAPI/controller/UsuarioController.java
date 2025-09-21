@@ -22,14 +22,28 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public Usuarios getUsuarioPorId(@PathVariable Integer id){
+    public Object getUsuarioPorId(@PathVariable Integer id){
+        Usuarios usuario = usuarioService.getUsuarioById(id);
+        if (usuario == null){
+            return "No se encontro el usuario!";
+        }
         return usuarioService.getUsuarioById(id);
     }
 
     @PostMapping
     public String createUsuario(@RequestBody Usuarios usuarios){
+        if (usuarios.getCodigoUsuario() != null) {
+            return "No se puede poner el codigo en el agregar";
+        }
         try {
             Usuarios result = usuarioService.saveUsuario(usuarios);
+            if ("ERROR_VACIO".equals(result.getContraseña())) {
+                return "Debe ingresar una contraseña, no puede estar vacia!";
+            }
+            if ("ERROR_VACIO".equals(result.getCorreoUsuario())) {
+                return "El correo no puede estar vacio!";
+            }
+
             if("ERROR_CORREO_REPETIDO".equals(result.getCorreoUsuario())){
                 return "El correo ya existe en la base de datos!";
             }
@@ -49,6 +63,13 @@ public class UsuarioController {
             if (result == null) {
                 return "Usuario no encontrado";
             }
+
+            if ("ERROR_VACIO".equals(result.getContraseña())) {
+                return "Debe ingresar una contraseña, no puede estar vacia!";
+            }
+            if ("ERROR_VACIO".equals(result.getCorreoUsuario())) {
+                return "El correo no puede estar vacio!";
+            }
             if("ERROR_CORREO_REPETIDO".equals(result.getCorreoUsuario())){
                 return "El correo ya existe en la base de datos!";
             }
@@ -60,6 +81,10 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public String deleteUsuario(@PathVariable Integer id){
+        Usuarios usuario = usuarioService.getUsuarioById(id);
+        if (usuario == null){
+            return "No se encontro el usuario con ese codigo!";
+        }
         usuarioService.deleteUsuario(id);
         return "Usuario eliminado correctamente!";
     }

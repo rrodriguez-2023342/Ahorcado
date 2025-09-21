@@ -29,6 +29,16 @@ public class UsuarioServiceImplements implements UsuarioService{
     @Override
     public Usuarios saveUsuario(Usuarios usuarios) {
         ValidacionEmail.validarEmail(usuarios.getCorreoUsuario());
+
+        if (usuarios.getContraseña() == null || usuarios.getContraseña().trim().isEmpty()) {
+            usuarios.setContraseña("ERROR_VACIO");
+            return usuarios;
+        }
+        if (usuarios.getCorreoUsuario() == null || usuarios.getCorreoUsuario().trim().isEmpty()) {
+            usuarios.setCorreoUsuario("ERROR_VACIO");
+            return usuarios;
+        }
+
         List<Usuarios> lista = usuarioRepository.findAll();
         for (Usuarios u :  lista) {
             if (u.getCorreoUsuario().equalsIgnoreCase(usuarios.getCorreoUsuario())) {
@@ -46,6 +56,16 @@ public class UsuarioServiceImplements implements UsuarioService{
     @Override
     public Usuarios updateUsuario(Integer id, Usuarios usuario) {
         ValidacionEmail.validarEmail(usuario.getCorreoUsuario());
+
+        if (usuario.getContraseña() == null || usuario.getContraseña().trim().isEmpty()){
+            usuario.setContraseña("ERROR_VACIO");
+            return usuario;
+        }
+        if (usuario.getCorreoUsuario() == null || usuario.getCorreoUsuario().trim().isEmpty()){
+            usuario.setCorreoUsuario("ERROR_VACIO");
+            return usuario;
+        }
+
         Usuarios existingUsuario = usuarioRepository.findById(id).orElse(null);
         if (existingUsuario != null) {
             List<Usuarios> lista = usuarioRepository.findAll();

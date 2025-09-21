@@ -21,14 +21,28 @@ public class PalabraController {
     }
 
     @GetMapping("/{id}")
-    public Palabras getPalabraPorId(@PathVariable Integer id){
+    public Object getPalabraPorId(@PathVariable Integer id){
+        Palabras palabra = palabraService.getPalabraById(id);
+        if (palabra == null){
+            return "Palabra no encontrada";
+        }
         return palabraService.getPalabraById(id);
     }
 
     @PostMapping
     public String createPalabra(@RequestBody Palabras palabras){
+        if (palabras.getCodigoPalabra() != null){
+            return "No se puede poner el codigo en el agregar!";
+        }
         try {
             Palabras result = palabraService.savePalabras(palabras);
+            if ("ERROR_VACIO".equals(result.getPalabra())){
+                return "La palabra no puede estar vacia!";
+            }
+            if ("ERROR_VACIO".equals(result.getPista())){
+                return "La pista no puede estar vacia!";
+            }
+
             if("ERROR_PALABRA_REPETIDO".equals(result.getPalabra())){
                 return "La palabra ya existe en la base de datos!";
             }
@@ -48,6 +62,13 @@ public class PalabraController {
             if (result == null) {
                 return "Palabra no encontrada";
             }
+
+            if ("ERROR_VACIO".equals(result.getPalabra())){
+                return "La palabra no puede estar vacia!";
+            }
+            if ("ERROR_VACIO".equals(result.getPista())){
+                return "La pista no puede estar vacia!";
+            }
             if("ERROR_PALABRA_REPETIDO".equals(result.getPalabra())){
                 return "La palabra ya existe en la base de datos!";
             }
@@ -62,6 +83,10 @@ public class PalabraController {
 
     @DeleteMapping("/{id}")
     public String deletePalabra(@PathVariable Integer id){
+        Palabras palabra = palabraService.getPalabraById(id);
+        if (palabra == null){
+            return "Palabra no encontrada";
+        }
         palabraService.deletePalabras(id);
         return "Palabra eliminado correctamente!";
     }
