@@ -28,6 +28,14 @@ Delimiter //
 Delimiter ;
 call sp_AgregarUsuario('robertoandre0307@gmail.com', 'hola');
 call sp_AgregarUsuario('1', '1');
+call sp_AgregarUsuario('julio@gmail.com', 'julio');
+call sp_AgregarUsuario('rrdriguez-2023342@edu.gt', 'hola123');
+call sp_AgregarUsuario('hola', 'hola');
+call sp_AgregarUsuario('esteban@gmail.com', 'esteban123');
+call sp_AgregarUsuario('123@edu.gt', '123');
+call sp_AgregarUsuario('robertorodriguez@gmail.com', 'hola1234');
+call sp_AgregarUsuario('ehor', 'ehor123');
+call sp_AgregarUsuario('eduardo', 'ehor123');
 
 Delimiter //
 	Create procedure sp_ListarUsuario()
@@ -100,6 +108,11 @@ call sp_AgregarPalabra('ESTUDIAR', 'Ejercitar el entendimiento para alcanzar o c
 call sp_AgregarPalabra('AHORCADO', 'Nombre del juego que estás jugando ahora.');
 call sp_AgregarPalabra('COMPUTADORA', 'Máquina que procesa información.');
 call sp_AgregarPalabra('PROFESORES', 'Persona que ejerce o enseña una ciencia o arte.');
+call sp_AgregarPalabra('RITMO', 'Orden acompasado en la sucesión o acaecimiento de las cosas.');
+call sp_AgregarPalabra('LETRAS', 'Cada uno de los signos gráficos que componen el alfabeto de un idioma.');
+call sp_AgregarPalabra('MARIPOSA', 'generalmente de colores brillantes, que constituye la fase adulta de los lepidópteros.');
+call sp_AgregarPalabra('CHOCOLATE', 'Pasta hecha con cacao y azúcar molidos, a la que generalmente se añade canela o vainilla.');
+call sp_AgregarPalabra('BANDERA', 'Tela de forma comúnmente rectangular, que se asegura por uno de sus lados a un asta o a una driza y se emplea como enseña o señal de una nación.');
 
 Delimiter //
 	Create procedure sp_ListarPalabra()
