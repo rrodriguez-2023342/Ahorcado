@@ -56,6 +56,11 @@ public class UsuarioController {
         }
     }
 
+    @PutMapping
+    public String updateSinId(){
+        return "Debe proporcionar un ID para poder Actulizar!";
+    }
+
     @PutMapping("/{id}")
     public String updateUsuario(@PathVariable Integer id, @RequestBody Usuarios usuarios){
         try {
@@ -77,6 +82,11 @@ public class UsuarioController {
         }  catch (InvalidEmail invalid) {
             return invalid.getMessage();
         }
+    }
+
+    @DeleteMapping
+    public String deleteUsuario(){
+        return "Debe proporcionar un ID para poder Eliminar!";
     }
 
     @DeleteMapping("/{id}")
