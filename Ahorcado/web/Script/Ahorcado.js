@@ -1,38 +1,53 @@
-// Declaración de variables
-let tiempoRestante = 300; // Tiempo en segundos
-let intervalo = null; // Guardará el setInterval del cronómetro
-let juegoIniciado = false; // Indica si el juego está activo
-let palabras = []; // Array que se llenará desde la base de datos
+//VARIABLES
+let tiempoRestante = 300; // Tiempo que dura el juego (5 minutos)
+let intervalo = null; // Aquí se guardará el "reloj" que cuenta los segundos
+let juegoIniciado = false; // Sirve para saber si el juego ya empezó o no
+let palabras = []; // Aquí se van a guardar las palabras que vienen del servidor
 
-let palabraSecreta = ""; // Palabra que el jugador debe adivinar
-let pistaActual = ""; // Pista de la palabra actual
-let palabraSecretaImagen = ""; // Imagen asociada a la palabra
-let progreso = []; // Letras acertadas y guiones
-let errores = 0; // Contador de errores
-const erroresMax = 6; // Máximo de errores permitidos
+let palabraSecreta = ""; // La palabra que el jugador debe adivinar
+let pistaActual = ""; // Una pequeña pista para ayudar al jugador
+let palabraSecretaImagen = ""; // Imagen relacionada con la palabra
+let progreso = []; // Aquí se guardan las letras acertadas y los guiones
+let errores = 0; // Contador de fallos del jugador
+const erroresMax = 6; // Número máximo de fallos permitidos
 
-// Cargar palabras desde el servlet
+// Imágenes que muestran el dibujo del ahorcado en cada fallo
+const imagenesAhorcado = [
+    "Image/ahorcado1.png", // Sin errores
+    "Image/ahorcado2.png", // 1 error
+    "Image/ahorcado3.png", // 2 errores
+    "Image/ahorcado4.png", // 3 errores
+    "Image/ahorcado5.png", // 4 errores
+    "Image/ahorcado6.png", // 5 errores
+    "Image/ahorcado7.png"  // 6 errores = juego perdido
+];
+
+// Esta funcion trae las palabras desde el servidor
 async function cargarPalabras() {
     try {
-        const response = await fetch("MostrarPalabras?action=obtenerPalabras"); // Llamar al servlet
+        const response = await fetch("MostrarPalabras?action=obtenerPalabras");
         if (!response.ok)
-            throw new Error("Error al obtener las palabras"); // Si falla, lanzar error
+            throw new Error("Error al obtener las palabras");
 
-        const data = await response.json(); // Convertir la respuesta en JSON
+        const data = await response.json();
 
-        // Guardar palabras en mayúsculas y agregar ruta de imagen
-        palabras = data.map(p => ({
+        // Guarda las palabras en MAYÚSCULAS y prepara la imagen
+        palabras = data.map(p => {
+            const ruta = "Image/" + p.palabra.toLowerCase() + ".png";
+            return {
                 palabra: p.palabra.toUpperCase(),
                 pista: p.pista,
-                imagen: "Image/" + p.palabra.toLowerCase() + ".png"
-            }));
+                imagen: ruta // Si no existe la personalizada, se pondrá una por defecto
+            };
+        });
     } catch (error) {
-        console.error(error); // Mostrar error en consola
-        alert("No se pudieron cargar las palabras del servidor"); // Alerta al usuario
+        console.error(error);
+        alert("No se pudieron cargar las palabras del servidor");
     }
 }
 
-// Actualizar cronómetro en pantalla
+
+// Esta funcion actualiza el cronometro en la pantalla
 function actualizarCronometro() {
     const minutos = Math.floor(tiempoRestante / 60);
     const segundos = tiempoRestante % 60;
@@ -40,60 +55,69 @@ function actualizarCronometro() {
             `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
 }
 
-// Iniciar juego
+// Muestra la imagen del ahorcado dependiendo de los fallos
+function actualizarAhorcado() {
+    const imgElement = document.querySelector("#imagen-ganador img");
+    imgElement.src = imagenesAhorcado[errores];
+    document.getElementById("imagen-ganador").style.display = "block";
+}
+
+// Empieza el juego
 function iniciarJuego() {
-    if (!juegoIniciado) { // Solo si el juego no ha iniciado
+    if (!juegoIniciado) { // Solo si no se ha iniciado antes
         juegoIniciado = true;
 
-        if (!palabraSecreta) { // Si no hay palabra seleccionada
+        if (!palabraSecreta) { // Si aún no hay palabra seleccionada
             if (palabras.length === 0) {
                 alert("No hay palabras cargadas");
                 return;
             }
 
-            // Seleccionar palabra aleatoria
+            // Elige una palabra al azar
             const seleccion = palabras[Math.floor(Math.random() * palabras.length)];
             palabraSecreta = seleccion.palabra;
             pistaActual = seleccion.pista;
             palabraSecretaImagen = seleccion.imagen;
 
-            document.querySelector(".pista-box").textContent = pistaActual; // Mostrar pista
+            // Muestra la pista en pantalla
+            document.querySelector(".pista-box").textContent = pistaActual;
 
-            progreso = Array(palabraSecreta.length).fill("_"); // Inicializar guiones
+            // Crea guiones bajos por cada letra de la palabra
+            progreso = Array(palabraSecreta.length).fill("_");
             mostrarProgreso();
 
-            // Habilitar botones de letras
+            // Activa todos los botones de letras
             document.querySelectorAll(".letra").forEach(btn => {
                 btn.disabled = false;
                 btn.style.backgroundColor = "";
                 btn.style.color = "";
             });
 
-            // Mostrar corazones (vidas)
+            // Muestra todos los corazones (vidas)
             document.querySelectorAll(".corazon").forEach(c => c.style.visibility = "visible");
 
-            // Ocultar imagen de ganador
-            document.querySelector("#imagen-ganador img").src = "";
-            document.getElementById("imagen-ganador").style.display = "none";
+            // Reinicia la imagen del ahorcado
+            errores = 0;
+            actualizarAhorcado();
         }
 
-        // Iniciar cronómetro
+        // Inicia el reloj que descuenta los segundos
         intervalo = setInterval(() => {
             if (tiempoRestante > 0) {
                 tiempoRestante--;
                 actualizarCronometro();
             } else {
-                clearInterval(intervalo); // Detener cronómetro
+                clearInterval(intervalo);
                 alert("¡Se acabó el tiempo!, la palabra oculta es: " + palabraSecreta);
-                reiniciarJuego(); // Reiniciar juego
+                reiniciarJuego();
             }
-        }, 1000); // Ejecutar cada segundo
+        }, 1000);
     }
 }
 
-// Reiniciar juego
+// Reinicia el juego y vuelve todo a como estaba al principio
 function reiniciarJuego() {
-    clearInterval(intervalo); // Detener cronómetro
+    clearInterval(intervalo);
     tiempoRestante = 300;
     juegoIniciado = false;
     palabraSecreta = "";
@@ -102,94 +126,112 @@ function reiniciarJuego() {
     progreso = [];
     errores = 0;
 
-    // Resetear pantalla
     document.querySelector(".espacios").textContent = "__ __ __ __ __ __ __ __ __";
     document.querySelector(".pista-box").textContent = "Aquí va la pista o descripción del elemento a adivinar.";
 
-    // Resetear botones de letras
+    // Vuelve a activar todos los botones
     document.querySelectorAll(".letra").forEach(btn => {
         btn.disabled = false;
         btn.style.backgroundColor = "";
         btn.style.color = "";
     });
 
-    // Resetear corazones
+    // Muestra de nuevo los corazones
     document.querySelectorAll(".corazon").forEach(c => c.style.visibility = "visible");
 
-    // Ocultar imagen de ganador
-    document.querySelector("#imagen-ganador img").src = "";
-    document.getElementById("imagen-ganador").style.display = "none";
+    // Vuelve a poner la primera imagen del ahorcado
+    const imgElement = document.querySelector("#imagen-ganador img");
+    imgElement.src = imagenesAhorcado[0];
+    document.getElementById("imagen-ganador").style.display = "block";
 
-    actualizarCronometro(); // Actualizar cronómetro
+    actualizarCronometro();
 }
 
-// Pausar juego
+// Pausa el juego
 function pausarJuego() {
-    clearInterval(intervalo); // Detener cronómetro
-    juegoIniciado = false; // Cambiar estado
+    clearInterval(intervalo);
+    juegoIniciado = false;
 }
 
-// Mostrar progreso de palabra
+// Muestra los guiones y letras acertadas
 function mostrarProgreso() {
-    document.querySelector(".espacios").textContent = progreso.join(" "); // Letras y guiones
+    document.querySelector(".espacios").textContent = progreso.join(" ");
 }
 
-// Verificar letra seleccionada
+// Comprueba si la letra elegida es correcta
 function verificarLetra(letra, boton) {
-    if (!juegoIniciado) { // Si el juego no ha iniciado
+    if (!juegoIniciado) {
         alert("Primero debes iniciar el juego con el botón INICIO.");
         return;
     }
 
-    boton.disabled = true; // Desactivar botón
+    boton.disabled = true;
     let acierto = false;
 
-    // Revisar si la letra está en la palabra secreta
+    // Revisa si la letra aparece en la palabra
     for (let i = 0; i < palabraSecreta.length; i++) {
         if (palabraSecreta[i] === letra) {
-            progreso[i] = letra; // Actualizar progreso
+            progreso[i] = letra;
             acierto = true;
         }
     }
 
     mostrarProgreso();
 
-    if (acierto) { // Si acertó
+    if (acierto) {
+        // Si la letra esta, pinta el botón en verde
         boton.style.backgroundColor = "green";
         boton.style.color = "white";
-    } else { // Si falló
+    } else {
+        // Si la letra NO está, pinta el botón en rojo y aumenta el error
         boton.style.backgroundColor = "red";
         boton.style.color = "white";
-        errores++; // Aumentar errores
+        errores++;
 
+        // Oculta un corazon
         const corazones = document.querySelectorAll(".corazon");
         if (errores <= erroresMax) {
-            corazones[errores - 1].style.visibility = "hidden"; // Ocultar corazón
+            corazones[errores - 1].style.visibility = "hidden";
         }
 
-        if (errores >= erroresMax) { // Perder juego
+        actualizarAhorcado();
+
+        // Si ya llego al maximo de errores, pierde
+        if (errores >= erroresMax) {
             clearInterval(intervalo);
             document.querySelector(".espacios").textContent = palabraSecreta.split("").join(" ");
             alert("¡Perdiste!, la palabra oculta es: " + palabraSecreta);
+
+            // Muestra la imagen de la palabra, o la de defecto si no existe
+            const imgElement = document.querySelector("#imagen-ganador img");
+            imgElement.onerror = () => {
+                imgElement.src = "Image/pordefecto.png";
+            };
+            imgElement.src = palabraSecretaImagen;
+            document.getElementById("imagen-ganador").style.display = "block";
         }
     }
 
-    if (!progreso.includes("_")) { // Ganar juego
+    // Si ya no quedan guiones, significa que gano
+    if (!progreso.includes("_")) {
         clearInterval(intervalo);
         alert("¡Ganaste! La palabra oculta es: " + palabraSecreta);
 
-        // Mostrar imagen de ganador
         const imgElement = document.querySelector("#imagen-ganador img");
+        imgElement.onerror = () => {
+            imgElement.src = "Image/pordefecto.png";
+        };
         imgElement.src = palabraSecretaImagen;
         document.getElementById("imagen-ganador").style.display = "block";
     }
 }
 
-// Eventos al cargar la página
+//AL CARGAR LA PAGINA
 document.addEventListener("DOMContentLoaded", async () => {
-    await cargarPalabras(); // Cargar palabras desde BD
+    // Carga las palabras desde el servidor
+    await cargarPalabras();
 
-    // Asignar evento a cada botón de letra
+    // Hace que cada botón de letra funcione
     document.querySelectorAll(".letra").forEach(btn => {
         btn.addEventListener("click", (e) => {
             const letra = e.target.textContent;
@@ -197,5 +239,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
-    actualizarCronometro(); // Mostrar cronómetro al inicio
+    // Muestra el cronómetro desde el inicio
+    actualizarCronometro();
+
+    // Pone el ahorcado vacío al iniciar
+    actualizarAhorcado();
 });

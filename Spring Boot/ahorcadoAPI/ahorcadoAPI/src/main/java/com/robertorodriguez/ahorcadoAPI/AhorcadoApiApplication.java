@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AhorcadoApiApplication implements CommandLineRunner {
+public class    AhorcadoApiApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AhorcadoApiApplication.class, args);
