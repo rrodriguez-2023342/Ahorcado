@@ -55,6 +55,11 @@ public class PalabraController {
         }
     }
 
+    @PutMapping
+    public String updateSinId(){
+        return "Debe prorporcionar un ID para poder Actulizar!";
+    }
+
     @PutMapping("/{id}")
     public String updatePalabra(@PathVariable Integer id, @RequestBody Palabras palabras){
         try {
@@ -79,6 +84,11 @@ public class PalabraController {
         }  catch (Exception e) {
             return e.getMessage();
         }
+    }
+
+    @DeleteMapping
+    public String deleteSinId() {
+        return "Debes proporcionar un ID para eliminar una palabra.";
     }
 
     @DeleteMapping("/{id}")
